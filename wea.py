@@ -1,4 +1,7 @@
 
+from shutil import which
+
+
 print("Bienvendio a la wea de mierda")
 print("1.- Registrar trabajador")
 print("2.- Listar a todos los trabajadores")
@@ -49,6 +52,16 @@ def imprimir_plantilla():
     else:
         print("Cargo no valido")
         return
+
+    with open(nombreArchivo,'w') as archivo:
+        for trabajador in trabajadores_a_imprimir:
+            archivo.write(f"Nombre y apellido: {trabajador['Nombre']} \n")
+            archivo.write(f"Cargo: {trabajador['Cargo']} \n")
+            archivo.write(f"Sueldo bruto: {trabajador['sueldobruto']} \n")
+            archivo.write(f"Descuento de salud: {trabajador['dscoSalud']} \n")
+            archivo.write(f"Descuento AFP: {trabajador['dscoAFP']} \n")
+            archivo.write(f"Liquido a pagar: {trabajador['liquidopagar']} \n")
+
 while True:
     opc=int(input("Ingrese opcion "))
     
@@ -57,9 +70,12 @@ while True:
     elif opc==2:
         listar_trabajadores(trabajadores)
     elif opc==3:
-        imprimir_plantilla(trabajadores)
+        imprimir_plantilla()
     elif opc==4:
         print("SALIENDO")
         break
     else:
         print ("Ingrese opcion correcta ")
+        
+        
+
